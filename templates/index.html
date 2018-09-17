@@ -6,23 +6,29 @@
 </head>
 
 <body>
+    <div>
+        <h1> Enter Username </h1>
+        <p>Enter username to proceed to the game</p>
+    </div>
 
-    <p>{{ riddle_data[question_id]['riddle'] }} </p>
 
     <form method="POST">
-        <input type="hidden" name="question_id" value="{{question_id}}">
-        <input type="hidden" name="question_id" value="{{fail_counter}}">
-        <input type="text" id="answer" name="answer" placeholder="Your Answer Here" autofocus></input>
+
+        <input type="text" id="username" name="username" placeholder="Enter Username" autofocus></input>
         <button>Submit Answer</button>
     </form>
 
-    
-    <h3>incorrect answers</h3>
+
+    <h3>Current Users</h3>
     <ul>
-        {% for guess in guesses %}
-        <li>{{guess}}</li>
+        {% for user in users %}
+        <li>{{user}}</li>
         {% endfor %}
     </ul>
+
+
+
+    
 
 </body>
 

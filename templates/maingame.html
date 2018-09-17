@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Riddle Me This</title>
+</head>
+
+<body>
+
+    <p>{{ riddle_data[question_id]['riddle'] }} </p>
+
+    <form method="POST">
+        <input type="hidden" name="question_id" value="{{question_id}}">
+        <input type="hidden" name="score" value="{{score}}">
+        <input type="text" id="answer" name="answer" placeholder="Your Answer Here" autofocus></input>
+        <button>Submit Answer</button>
+    </form>
+
+    
+    <h3>score</h3>
+    <p> {{score}}</p>
+    
+    
+      
+    <ul>
+        {% for guess in guesses %}
+        <li>{{guess}}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>
