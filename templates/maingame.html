@@ -7,7 +7,11 @@
 
 <body>
 
+    <!-- display riddle -->
     <p>{{ riddle_data[question_id]['riddle'] }} </p>
+    
+    <!-- question # -->
+    <p> question #{{question_id + 1}} / 10</p>
 
     <form method="POST">
         <input type="hidden" name="question_id" value="{{question_id}}">
