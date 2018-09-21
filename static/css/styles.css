@@ -1,0 +1,46 @@
+body {
+    background-color: #bceef3 !important;
+}
+
+/* text styles */
+
+.heading-text {
+    margin-top: 25px;
+    font-style: italic;
+}
+
+.normal-text {
+    font-style: normal;
+    font-weight: normal;
+}
+
+.italic-text {
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+/* jumbotron */
+
+.jumbotron {
+    width: 66%;
+    margin: auto;
+}
+
+/* riddle div style */
+
+.riddle-div {
+    margin-top: 35px;
+}
+
+
+/* button styles */
+
+.btn-danger {
+    margin-top: 50px;
+
+}
+
+.btn-info {
+    margin-top: 50px;
+}

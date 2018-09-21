@@ -100,13 +100,13 @@ def user(username):
             return redirect ("/game_over")
          
     
-    # get_guesses has to be called after the post request otherwise it will show the previous answer. eg if you guess 'hello' and then guess 'world' on the second guess it will show 'hello'
+    # loading the guesses file has to be called after the post request otherwise it will show the previous answer. eg if you guess 'hello' and then guess 'world' on the second guess it will show 'hello'
     guesses = load_file("data/guesses.txt")   
     
     
     
     
-    return render_template("maingame.html", riddle_data=data, question_id=question_id, guesses=guesses, score=score)
+    return render_template("maingame.html", riddle_data=data, question_id=question_id, guesses=guesses, score=score, username=username)
     
 @app.route("/game_over")
 def game_over():
@@ -117,10 +117,13 @@ def game_over():
             score = int(score)
             scores.append((name, score))
     
+    #sorts the scores by numerical value, highest first
     scores.sort(key=lambda s: s[1], reverse=True)        
     
     
     return render_template("game_over.html", scores=scores)
+    
+    
 
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
