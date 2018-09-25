@@ -1,54 +1,64 @@
 [
     {
         "riddle": "The more you take, the more you leave behind. What am I?",
-        "answer": "footsteps"
+        "answer": "footsteps",
+        "hint": "When you walk in winter, you leave these behind you."
         
-                    
+      
     },
     
     {
         "riddle": "David's father has three sons : Snap, Crackle and _____ ?",
-        "answer": "david"
+        "answer": "david",
+        "hint": "Look to the start of the riddle."
     },
     
     {
         "riddle": "They have not flesh, nor feathers, nor scales, nor bone. Yet they have fingers and thumbs of their own. What are they?",
-        "answer": "gloves"
+        "answer": "gloves",
+        "hint": "Worn on your hands."
     },
     
     {
         "riddle": "What has six faces, But does not wear makeup. It also has twenty-one eyes, But cannot see?",
-        "answer": "dice"
+        "answer": "dice",
+        "hint": "A gamblers best and worst friend"
     },
     
     {
         "riddle": "This is as light as a feather, yet no man can hold it for long. What am I?",
-        "answer": "breath"
+        "answer": "breath",
+        "hint": "It is held when diving underwater."
     },
     
     {
         "riddle": "You have three stoves: a gas stove, a wood stove, and a coal stove, but only one match. Which should you light first?",
-        "answer": "match"
+        "answer": "match",
+        "hint": "Start by making fire."
     },
     
     {
-        "riddle": "This is as light as a feather, yet no man can hold it for long. What am I?",
-        "answer": "breath"
+        "riddle": "I weigh nothing, but you can still see me. If you put me in a bucket, I make the bucket lighter. What am I?",
+        "answer": "a hole",
+        "hint": "cut this into the bottom."
     },
     
     {
         "riddle": "Tool of thief, toy of queen. Always used to be unseen. Sign of joy, sign of sorrow. Giving all likeness borrowed. What am I?",
-        "answer": "a mask"
+        "answer": "mask",
+        "hint": "Worn on a face to hide an identity."
     },
     
     {
         "riddle": "If you were running a race, and you passed the person in 2nd place, what place would you be in now?",
-        "answer": "2nd"
+        "answer": "2nd",
+        "hint": "It's not first."
     },
     
     {
         "riddle": "My first is a creature whose breeding is unclear. My second, a price you must pay. My whole can be found in the river of Time and refers to events of today. What am I?",
-        "answer": "current"
+        "answer": "current",
+        "hint": "People gossip to keep up with ____ affairs."
     }
     
     

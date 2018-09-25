@@ -1,6 +1,7 @@
 import os
 import json
 from flask import Flask, render_template, request, redirect
+from collections import deque
 
 app = Flask(__name__)
 
@@ -15,7 +16,7 @@ def write_to_file(filename, data):
 
 # write guesses to the guesses.txt file
 def store_guess(username, guess):
-    write_to_file("data/guesses.txt", "({0}) - {1}\n".format(username, guess))
+    write_to_file("data/guesses.txt", "{0} - {1}\n".format(username, guess))
     
 # write scores to the scores.txt file
 def store_score(username, score):
@@ -87,11 +88,7 @@ def user(username):
         else:
             store_guess(username, user_guess + "\n")
             score -= 1
-            
-         
-    
-            
-            
+       
     # if last question is answered correctly, return game over page
     if request.method == "POST":    
         
@@ -101,12 +98,11 @@ def user(username):
          
     
     # loading the guesses file has to be called after the post request otherwise it will show the previous answer. eg if you guess 'hello' and then guess 'world' on the second guess it will show 'hello'
-    guesses = load_file("data/guesses.txt")   
-    
-    
-    
-    
-    return render_template("maingame.html", riddle_data=data, question_id=question_id, guesses=guesses, score=score, username=username)
+    guesses = load_file("data/guesses.txt")
+    # uses deque to return the last 5 guesses
+    spliced_guesses = deque(guesses, 5)
+
+    return render_template("maingame.html", riddle_data=data, question_id=question_id, guesses=spliced_guesses, score=score, username=username)
     
 @app.route("/game_over")
 def game_over():

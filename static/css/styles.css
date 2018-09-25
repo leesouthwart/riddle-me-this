@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,700|Roboto+Mono:400,700');
+
 body {
     background-color: #bceef3 !important;
+    font-family: 'Roboto Mono', monospace!important;
+    
 }
 
 /* text styles */
@@ -7,40 +11,98 @@ body {
 .heading-text {
     margin-top: 25px;
     font-style: italic;
+    
 }
+
+
+
+
 
 .normal-text {
     font-style: normal;
     font-weight: normal;
+    
 }
 
 .italic-text {
     font-style: italic;
     font-weight: bold;
+    
 }
 
+.link-text {
+    padding-bottom: 0;
+    
+}
+
+.link-text:hover {
+    text-decoration: none;
+}
 
 /* jumbotron */
 
 .jumbotron {
     width: 66%;
     margin: auto;
+    background-color: #f5f5f5!important;
 }
 
 /* riddle div style */
 
 .riddle-div {
     margin-top: 35px;
+    margin-bottom: 35px;
 }
 
+.riddle-text {
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+
+.hint-text {
+    margin-bottom: 0;
+}
+
+.text-box {
+    padding-left: 5px;
+    width: 208px;
+}
+
+.form-group  {
+    padding-left: 6px;
+}
 
 /* button styles */
 
-.btn-danger {
-    margin-top: 50px;
-
+.button-stlye {
+    margin-left: 5px;
+    border-radius: 0;
+    
 }
 
-.btn-info {
-    margin-top: 50px;
+
+
+
+/* incorrect answers */
+
+.guess-style {
+    margin-top: 10px;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+.guess-hr {
+    width: 50%;
+}    
+    
+.list-style {
+    padding-left: 0;
+}
+
+/* basic footer styles */
+
+.footer {
+    margin-bottom: 10px;
+    font-style: italic;
 }

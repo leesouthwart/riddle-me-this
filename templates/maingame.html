@@ -37,13 +37,13 @@
             <!-- home/highscores links -->
             <div class="row justify-content-between">
                 <div class="col-4">
-                    <a href="/">
+                    <a class="link-text" href="/">
                         <p class="text-center">Home</p>
                     </a>
                 </div>
 
                 <div class="col-4">
-                    <a href="/">
+                    <a class="link-text" href="/game_over">
                         <p class="text-center">Highscores</p>
                     </a>
                 </div>
@@ -70,7 +70,7 @@
 
             <div class="row justify-content-center riddle-div">
                 <div class="col-12">
-                    <p class="text-center">{{ riddle_data[question_id]['riddle'] }} </p>
+                    <p class="text-center riddle-text">{{ riddle_data[question_id]['riddle'] }} </p>
                 </div>
             </div>
 
@@ -82,54 +82,48 @@
                         <div class="form-group">
                             <input type="hidden" name="question_id" value="{{question_id}}">
                             <input type="hidden" name="score" value="{{score}}">
-                            <input type="text" id="answer" name="answer" placeholder="Your Answer Here" autofocus></input>
+                            <input type="text" class="text-box" id="answer" name="answer" placeholder="Answer" autofocus></input>
                         </div>
-                        
-                        <button class="btn btn-success">Submit Answer</button>
+
+                        <button class="btn btn-info button-stlye" type="button" data-toggle="collapse" data-target="#hint" aria-expanded="false" aria-controls="hint">Hint</button>
+                        <button class="btn btn-success button-stlye">Submit</button>
                     </form>
                 </div>
             </div>
 
-
-            <!-- submit answer button -->
-            <div class="row text-center">
-                <div class="col-12">
-
-                </div>
+            <hr>
+            <div class="row collapse text-center" id="hint">
+                <p class="hint-text text-center">{{ riddle_data[question_id]['hint'] }}</p>
             </div>
 
-            <!-- hint/give up buttons -->
-            <div class="row text-center">
-                <div class="col-4 offset-2">
-                    <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#hint" aria-expanded="false" aria-controls="hint">Hint</button>
-                </div>
-
-                <div class="col-4">
-                    <button class="btn btn-danger">Skip</button>
-                </div>
-            </div>
-            <div class="row text-center collapse" id="hint">
-                test hint 
-            </div>
-            
         </div>
     </div>
-    
+
     <!-- incorrect answers jumbotron -->
     <div class="jumbotron">
         <div class="container-fluid">
-            
-            <h2 class="text-center">Incorrect Answers</h2>
-            
-            <ul>
+
+            <h2 class="text-center normal-text">Incorrect Answers</h2>
+            <hr>
+            <ul class="list-style normal-text text-center">
                 {% for guess in guesses %}
-                <li>{{guess}}</li>
-                {% endfor %}
+                <ul class="guess-style">{{guess}}</ul>
+                <hr class="guess-hr"> {% endfor %}
             </ul>
         </div>
     </div>
 
-
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <small class="text-muted">Text based riddle game made in python</small>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
 
 
@@ -140,5 +134,8 @@
 
 
 </body>
+
+
+
 
 </html>
