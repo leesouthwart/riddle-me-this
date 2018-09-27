@@ -1,1 +1,7 @@
-smorc, 3
+hello, 2
+test, 3
+test, 0
+test, 0
+test, 2
+hey, 2
+test, 3

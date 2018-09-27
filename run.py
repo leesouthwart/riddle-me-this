@@ -27,6 +27,25 @@ def store_score(username, score):
 def load_file(filename):
     with open(filename, "r") as data:
         return [row for row in data if len(row.strip()) > 0]
+        
+def delete_user(username):
+    with open("data/users.txt", "r+") as user_data:
+        users = user_data.readlines()
+        user_data.seek(0)
+        for line in users:
+            if line != username + "\n":
+                user_data.write(line)
+        user_data.truncate()
+        user_data.close()
+    
+    with open("data/guesses.txt", "r+") as data:
+        f = data.readlines()
+        data.seek(0)
+        for line in f:
+            if username not in line:
+                data.write(line)
+        data.truncate()
+        data.close()
             
         
 
@@ -61,7 +80,7 @@ def user(username):
     
     
     #initial question_id
-    question_id = 0
+    question_id = 7
     
     #initial fail_count
     score = 0
@@ -93,7 +112,10 @@ def user(username):
     if request.method == "POST":    
         
         if question_id > 8 and user_guess == "current":
+            #stores score for use in highscores page
             store_score(username, score)
+            #deletes user from active users and deletes their incorrect answers
+            delete_user(username)
             return redirect ("/game_over")
          
     
@@ -114,10 +136,12 @@ def game_over():
             scores.append((name, score))
     
     #sorts the scores by numerical value, highest first
-    scores.sort(key=lambda s: s[1], reverse=True)        
+    scores.sort(key=lambda s: s[1], reverse=True) 
     
+    #return the top 10 scores in order
+    top_10_scores = scores[:10]
     
-    return render_template("game_over.html", scores=scores)
+    return render_template("game_over.html", scores=top_10_scores)
     
     
 
