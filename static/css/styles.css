@@ -94,6 +94,23 @@ body {
     
 }
 
+.home-button-stlye{
+    background-color: #f5f5f5;
+    color: #007bff;
+}
+
+.home-button-stlye:hover{
+    background-color: #e8e6e6;
+}
+
+.fa-home {
+    margin-right: 5px;
+}
+
+.fa-forward {
+    margin-left: 5px;
+}
+
 
 
 

@@ -80,7 +80,7 @@ def user(username):
     
     
     #initial question_id
-    question_id = 7
+    question_id = 0
     
     #initial fail_count
     score = 0
@@ -88,37 +88,79 @@ def user(username):
     
     
     #Handle POST request
+    
+    # handles home button request. Deletes users from current users and incorrect answers
     if request.method == "POST":
+        if request.form["button"] == "home":
+                delete_user(username)
+                return redirect("/")   
+    
+    
+            
+    #handles submit button request and logic for adding/removing score and storing incorrect guesses.
+    if request.method == "POST":
+        if request.form["button"] == "submit":
+                #get current question_id from the hidden form field
+                question_id = int(request.form["question_id"])
         
-        #get current question_id from the hidden form field
-        question_id = int(request.form["question_id"])
-        
-        #gets current fail count from the hidden form field
-        score = int(request.form["score"])
+                #gets current fail count from the hidden form field
+                score = int(request.form["score"])
         
         
-        #user_guess is equal to the input the user gives. Using .lower to remove any capitalisation (all answers are exclusively lower case)
-        user_guess = request.form["answer"].lower() 
+                #user_guess is equal to the input the user gives. Using .lower to remove any capitalisation (all answers are exclusively lower case)
+                user_guess = request.form["answer"].lower() 
  
-        #if users guess is correct +1 to question id and go to the next riddle
-        if data[question_id]["answer"] == user_guess:
+                #if users guess is correct +1 to question id and go to the next riddle
+                if data[question_id]["answer"] == user_guess:
+                    question_id += 1
+                    score += 1
+                else:
+                    store_guess(username, user_guess + "\n")
+                    score -= 1
+                    
+    
+    # Handles skip button request. -1 from score and giving user the next riddle.
+    if request.method == "POST":
+        if request.form["button"] == "skip":
+            #get current question_id from the hidden form field
+            question_id = int(request.form["question_id"])
+        
+            #gets current fail count from the hidden form field
+            score = int(request.form["score"])
+            
             question_id += 1
-            score += 1
-        else:
-            store_guess(username, user_guess + "\n")
             score -= 1
+            
+            #if last question is skipped
+            if question_id > 9:
+                 #stores score for use in highscores page
+                store_score(username, score)
+                #deletes user from active users and deletes their incorrect answers
+                delete_user(username)
+                return redirect ("/game_over")
+            
+    
+    # Handles highscores button request
+    if request.method == "POST":
+        if request.form["button"] == "highscores":
+               
+                #deletes user from active users and deletes their incorrect answers to 
+                #avoid people quitting early and still being logged as active
+                delete_user(username)
+                return redirect ("/game_over")        
        
     # if last question is answered correctly, return game over page
     if request.method == "POST":    
-        
-        if question_id > 8 and user_guess == "current":
-            #stores score for use in highscores page
-            store_score(username, score)
-            #deletes user from active users and deletes their incorrect answers
-            delete_user(username)
-            return redirect ("/game_over")
-         
-    
+        if request.form["button"] == "submit":
+            if question_id > 8 and user_guess == "current":
+                #stores score for use in highscores page
+                store_score(username, score)
+                #deletes user from active users and deletes their incorrect answers
+                delete_user(username)
+                return redirect ("/game_over")
+            
+                 
+          
     # loading the guesses file has to be called after the post request otherwise it will show the previous answer. eg if you guess 'hello' and then guess 'world' on the second guess it will show 'hello'
     guesses = load_file("data/guesses.txt")
     # uses deque to return the last 5 guesses
@@ -126,6 +168,8 @@ def user(username):
 
     return render_template("maingame.html", riddle_data=data, question_id=question_id, guesses=spliced_guesses, score=score, username=username)
     
+
+# GAME OVER PAGE
 @app.route("/game_over")
 def game_over():
     scores = []
@@ -142,8 +186,6 @@ def game_over():
     top_10_scores = scores[:10]
     
     return render_template("game_over.html", scores=top_10_scores)
-    
-    
 
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
