@@ -3,6 +3,7 @@ import json
 from flask import Flask, render_template, request, redirect
 from collections import deque
 
+
 app = Flask(__name__)
 
 
@@ -89,7 +90,7 @@ def user(username):
     
     #Handle POST request
     
-    # handles home button request. Deletes users from current users and incorrect answers
+    # handles home button request. Deletes users from current users and incorrect answers and redirects to the homepage
     if request.method == "POST":
         if request.form["button"] == "home":
                 delete_user(username)
@@ -183,9 +184,10 @@ def game_over():
     scores.sort(key=lambda s: s[1], reverse=True) 
     
     #return the top 10 scores in order
-    top_10_scores = scores[:10]
+    top_10_scores = scores[:11]
     
     return render_template("game_over.html", scores=top_10_scores)
+
 
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)

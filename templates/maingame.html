@@ -37,7 +37,7 @@
 
             <!-- home/highscores links -->
             <div class="row justify-content-between">
-                <div class="col-4 text-center">
+                <div class="col-12 col-sm-4 text-center">
                     <form method="POST">
                         <button class="btn home-button-stlye" name="button" value="home">
                             <span class="fa fa-home"></span>home
@@ -45,7 +45,7 @@
                     </form>
                 </div>
 
-                <div class="col-4 text-center">
+                <div class="col-12 col-sm-4 text-center">
                     <form method="POST">
                         <button class="btn home-button-stlye" name="button" value="highscores">
                             Highscores
@@ -57,16 +57,16 @@
 
             <!-- question id and username -->
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     <!-- question # -->
                     <p class="text-center italic-text"> Question #{{question_id + 1}}/ <span class="normal-text">10</span></p>
                 </div>
 
-                <div class="col-4">
+                <div class="col-4 d-none d-sm-block">
                     <p class="text-center italic-text">Currently playing as <span class="normal-text">{{username}}</span></p>
                 </div>
 
-                <div class="col-4">
+                <div class="col-12 col-sm-4">
                     <p class="text-center italic-text">Score <span class="normal-text">{{score}}</span></p>
                 </div>
             </div>
@@ -91,9 +91,9 @@
 
                         </div>
 
-                        <button class="btn btn-info button-stlye" type="button" data-toggle="collapse" data-target="#hint" aria-expanded="false" aria-controls="hint">Hint</button>
-                        <button class="btn btn-success button-stlye" name="button" value="submit">Submit</button>
-                        <button class="btn btn-danger button-stlye" name="button" value="skip">Skip Question<span class="fa fa-forward"></span></button>
+                        <button class="btn btn-info button-style" type="button" data-toggle="collapse" data-target="#hint" aria-expanded="false" aria-controls="hint">Hint</button>
+                        <button class="btn btn-success button-style" name="button" value="submit">Submit</button>
+                        <button class="btn btn-danger button-style" name="button" value="skip">Skip Question<span class="fa fa-forward"></span></button>
                     </form>
                 </div>
             </div>
