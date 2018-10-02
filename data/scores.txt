@@ -1,3 +1,7 @@
 Lee, 10
 Kyle, 4
-lee, -10
+Sam, 10
+Kaitie, 0
+Jase, -10
+Kay, 6
+Jessica, 8
