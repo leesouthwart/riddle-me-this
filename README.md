@@ -9,6 +9,8 @@ to the riddles which is ideal. The design is mobile responsive.
 
 Multiple users can play the game at the same time in different browsers with no problems.
 
+The game can be found deployed at : https://riddle-me-this-app.herokuapp.com/
+
 ## UX
 
 This application has been created for people who want to play a simple, basic riddle game on their computer or phone.
