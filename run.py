@@ -138,4 +138,4 @@ def game_over():
 
 
 
-app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')), debug=True)
+app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')))
