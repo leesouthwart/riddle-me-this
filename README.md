@@ -4,7 +4,7 @@ Riddle Me This is a text based riddle game, developed in python using the Flask 
 Users select a username, and are then shown a riddle. If the riddle is answered correctly they are 
 moved on to the next riddle, until all 10 have been answered. Their score is tracked and displayed on a highscores page.
 Users also have the ability to get hints for the riddle, and can skip the question entirely if needed. The design is simple
-to match the simplicity of the game. I felt no need for anything other than a simple style for the page. The attention is drawn straight
+to match the simplicity of the game. I felt no need for anything other than a simple style for the page, so I used a bootstrap theme from startbootstrap.com. The attention is drawn straight
 to the riddles which is ideal. The design is mobile responsive.
 
 Multiple users can play the game at the same time in different browsers with no problems.
@@ -20,7 +20,7 @@ This application has been created for people who want to play a simple, basic ri
 * Username Input - Allows the user to pick the name they will use throughout the game. This name is also what will be stored alongside the users score on the highscores table.
 * Riddle Display - The maingame.html pulls the riddle from riddles.json and displays it using flask templating for the user to read.
 * User guess box - Text box for users to input their guesses. When submitted, whatever text is in the textbox will be saved to a variable "user_guess" and checked against the answer that is saved in the riddles.json file.
-* Incorrect Answers - If the user_guess variable doesnt match one of the answers to the riddle, it is saved in a text file "guesses.txt" and displayed on the page using flask templating by running a for loop over all lines in the file.
+* Incorrect Answers - If the user_guess variable doesnt match one of the answers to the riddle, it is saved in a text file "guesses.txt" and displayed on the page using flask templating by running a for loop over all lines in the file. It is also flashed under the submit box.
 * Highscores - After a user has answered all 10 riddles their score is saved and displayed on the top 10 highscores
 
 
@@ -55,6 +55,10 @@ play the game at the same time.
 * Skip button - Tested that the skip button sends the user to the next riddle and decreases their score by 1. Also tested if the last riddle is skipped, the user is redirected to the highscores.
 * Submit button - Tested that the post request is sent properly which calls all the functions to check the answer and add/decrease score.
 
+
+## Credit
+
+* The bootstrap theme used for the styling of this application can be found at https://startbootstrap.com/template-overviews/freelancer/
 
 ## Deployment
 

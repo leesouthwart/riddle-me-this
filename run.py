@@ -1,11 +1,12 @@
 import os
 import json
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for, flash
 from collections import deque
 import riddles
 
 app = Flask(__name__)
 
+app.secret_key = "73appkey"
 
             
         
@@ -19,10 +20,18 @@ def index():
     
     #Username post request
     if request.method == "POST":
-        riddles.write_to_file("data/users.txt", request.form["username"] + "\n")
-        return redirect(request.form["username"])
+        username = request.form["username"].lower()
+        
+        # check if username is unique
+        if username in open("data/users.txt").read():
+            flash("Username is not available, please pick another name.")
+            
+        else:
+            riddles.write_to_file("data/users.txt", username + "\n")
+            return redirect(username)
         
     users = riddles.load_file("data/users.txt")
+    
     
     
     return render_template("index.html", users=users)
@@ -73,6 +82,7 @@ def user(username):
                     question_id += 1
                     score += 1
                 else:
+                    flash(user_guess)
                     riddles.store_guess(username, user_guess + "\n")
                     score -= 1
                   
@@ -134,8 +144,6 @@ def game_over():
     
     top_10_scores = riddles.get_scores("data/scores.txt")
     
-    return render_template("game_over.html", scores=top_10_scores)
-
-
+    return render_template("highscores.html", scores=top_10_scores)
 
 app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')))

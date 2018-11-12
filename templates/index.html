@@ -1,85 +1,79 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %} {% block content %}
 
-<head>
-    <!-- meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- Navigation (NOT THE SAME NAV AS IN GAME_NAV_TEMPLATE.HTML) -->
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Riddle Me This</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+            name="button" action="home">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
 
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="static/css/styles.css" type="text/css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-
-
-    <title>Riddle Me This</title>
-
-</head>
-
-<body class="colour">
-
-    <!-- heading text -->
-    
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center heading-text">
-                    Riddle Me This<br>
-                    <small class="text-muted heading-subtext">A text based riddle game</small>
-                </h3>
-            </div>
-        </div>
-    </div>
-
-    <!-- enter username jumbotron -->
-    
-    <div class="jumbotron">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1 class="text-center subheading"> Enter Username </h1>
-                    <small class="text-muted italic-text">Enter username to proceed to the game</small>
-                </div>
-            </div>
-            <div class="row form-margin">
-                <div class="col-12 text-center">
-                    <form method="POST">
-                        <input type="text" id="username" name="username" placeholder="Enter Username" autofocus></input>
-                        <button class="button-style">Submit User</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- current users -->
-    
-    <div class="jumbotron">
-        <div class="container-fluid">
-
-            <h2 class="text-center normal-text">Current Users</h2>
-            <hr>
-            <ul class="list-style normal-text text-center">
-                {% for user in users %}
-                <ul class="guess-style">{{user}}</ul>
-                <hr class="guess-hr"> {% endfor %}
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#play">Play</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/game_over">Highscores</a>
+                </li>
             </ul>
         </div>
-        
-        <div class="row">
-            <div class="col-12 text-center">
-                <a href="/game_over" class="link-text">Highscores</a>
-            </div>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="masthead bg-primary text-white text-center height">
+    <div class="container">
+        <h1 class="text-uppercase mb-0">Riddle Me This</h1>
+        <hr class="star-light">
+        <h2 class="font-weight-light mb-0">A text based riddle game. Set a username to play!</h2>
+    </div>
+</header>
+
+<!-- Username Grid Section -->
+<section class="portfolio" id="play">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Enter Username</h2>
+        <hr class="star-dark mb-5">
+    </div>
+    <div class="row form-margin">
+        <div class="col-12 text-center">
+            <form method="POST">
+                <input type="text" id="username" name="username" placeholder="Enter Username" autofocus></input>
+                <button class="btn btn-default submit-button button-style">Submit User</button>
+            </form>
+            <!-- flashed message if username is not available -->
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            <h4 class="flashed-message"> {{ message }}</h4>
+            {% endfor %} {% endif %} {% endwith %}
         </div>
+
+
     </div>
 
+</section>
 
-    <!-- jquery/js/popper for bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- Active players Section -->
+<section class="bg-primary text-white mb-0" id="online">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-white">Current Users</h2>
+        <hr class="star-light mb-5">
+        <div class="row">
+            <div class="container-fluid">
+                <ul class="list-style normal-text text-center">
+                    {% for user in users %}
+                    <ul class="guess-style">{{user}}</ul>
+                    <hr class="guess-hr"> {% endfor %}
+                </ul>
+            </div>
 
-</body>
-
-</html>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="/game_over" class="link-text">Highscores</a>
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}

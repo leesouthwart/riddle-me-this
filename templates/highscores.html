@@ -1,0 +1,39 @@
+{% extends 'game_nav_template.html' %} {% block content %}
+
+<header class="masthead bg-primary text-white text-center height">
+    <div class="container">
+        <h1 class="text-uppercase mb-0">Highscores</h1>
+        <hr class="star-light">
+        <h2 class="font-weight-light mb-0">How did you do? Check below to compare you score!</h2>
+    </div>
+</header>
+
+
+<section class="portfolio justify-content-center">
+    <div class="container-fluid">
+        <div class="table-center">
+            <table class="table table-hover">
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Score</th>
+                </tr>
+                {% for score in scores %}
+                <tr>
+                    <td>{{score[0]}}</td>
+                    <td>{{score[1]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="row text-center ">
+            <div class="col-12">
+                <a href="/" class="link-text">
+                    <p>Play Again?</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

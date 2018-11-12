@@ -1,149 +1,112 @@
-<!DOCTYPE html>
-<html>
+{% extends 'game_nav_template.html' %} {% block content %}
 
-
-<head>
-    <!-- meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="static/css/styles.css" type="text/css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-
-    <title>Riddle Me This</title>
-
-</head>
-
-<body class="color">
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-center heading-text">
-                    Riddle Me This<br>
-                    <small class="text-muted heading-subtext">A text based riddle game</small>
-                </h3>
-            </div>
-        </div>
-    </div>
-
-    <div class="jumbotron jumbotron-padding">
-        <div class="container-fluid">
-
-            <!-- home/highscores links -->
-            <div class="row justify-content-between">
-                <div class="col-12 col-sm-4 text-center">
-                    <form method="POST">
-                        <button class="btn home-button-stlye" name="button" value="home">
-                            <span class="fa fa-home"></span>home
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container">
+        <form method="POST" class="nav-form">
+            <button class="navbar-brand nav-button" name="button" value="home">
+                <span></span>RIDDLE ME THIS
+             </button>
+            <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+                name="button" action="home">
+          Menu
+          <i class="fas fa-bars"></i>
+            </button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mx-0 mx-lg-1">
+                    <form method="POST" class="nav-form">
+                        <button class="nav-hs-button" name="button" value="highscores">
+                            <span>HIGHSCORES</span>
                         </button>
                     </form>
-                </div>
-
-                <div class="col-12 col-sm-4 text-center">
-                    <form method="POST">
-                        <button class="btn home-button-stlye" name="button" value="highscores">
-                            Highscores
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-
-            <!-- question id and username -->
-            <div class="row">
-                <div class="col-12 col-sm-4">
-                    <!-- question # -->
-                    <p class="text-center italic-text"> Question #{{question_id + 1}}/ <span class="normal-text">10</span></p>
-                </div>
-
-                <div class="col-4 d-none d-sm-block">
-                    <p class="text-center italic-text">Currently playing as <span class="normal-text">{{username}}</span></p>
-                </div>
-
-                <div class="col-12 col-sm-4">
-                    <p class="text-center italic-text">Score <span class="normal-text">{{score}}</span></p>
-                </div>
-            </div>
-
-            <!-- display riddle -->
-
-            <div class="row justify-content-center riddle-div">
-                <div class="col-12">
-                    <p class="text-center riddle-text">{{ riddle_data[question_id]['riddle'] }} </p>
-                </div>
-            </div>
-
-            <!-- submit answer text box -->
-
-            <div class="row text-center">
-                <div class="col-12">
-                    <form method="POST">
-                        <div class="form-group">
-                            <input type="hidden" name="question_id" value="{{question_id}}">
-                            <input type="hidden" name="score" value="{{score}}">
-                            <input type="text" class="text-box" id="answer" name="answer" placeholder="Answer" autofocus></input>
-
-                        </div>
-
-                        <button class="btn btn-info button-style" type="button" data-toggle="collapse" data-target="#hint" aria-expanded="false" aria-controls="hint">Hint</button>
-                        <button class="btn btn-success button-style" name="button" value="submit">Submit</button>
-                        <button class="btn btn-danger button-style" name="button" value="skip">Skip Question<span class="fa fa-forward"></span></button>
-                    </form>
-                </div>
-            </div>
-
-            <hr>
-            <div class="row collapse text-center" id="hint">
-                <p class="hint-text text-center">{{ riddle_data[question_id]['hint'] }}</p>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- incorrect answers jumbotron -->
-    <div class="jumbotron jumbotron-padding">
-        <div class="container-fluid">
-
-            <h2 class="text-center normal-text">Incorrect Answers</h2>
-            <hr>
-            <ul class="list-style normal-text text-center">
-                {% for guess in guesses %}
-                <ul class="guess-style">{{guess}}</ul>
-                <hr class="guess-hr"> {% endfor %}
+                </li>
             </ul>
         </div>
     </div>
+</nav>
 
 
-    <!-- FOOTER -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <small class="text-muted">Text based riddle game made in python</small>
-                </div>
+<!-- Header -->
+<header class="masthead bg-primary text-white text-center height">
 
+    <div class="container-fluid">
+
+
+
+
+        <!-- question id and username -->
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <!-- question # -->
+                <p class="text-center italic-text"> Question #{{question_id + 1}}/ <span class="normal-text">10</span></p>
+            </div>
+
+            <div class="col-4 d-none d-sm-block">
+                <p class="text-center italic-text">Currently playing as <span class="normal-text">{{username}}</span></p>
+            </div>
+
+            <div class="col-12 col-sm-4">
+                <p class="text-center italic-text">Score <span class="normal-text">{{score}}</span></p>
             </div>
         </div>
+
+        <!-- display riddle -->
+
+        <div class="row justify-content-center riddle-div">
+            <div class="col-12">
+                <p class="text-center riddle-text">{{ riddle_data[question_id]['riddle'] }} </p>
+            </div>
+        </div>
+
+        <!-- submit answer text box -->
+
+        <div class="row text-center">
+            <div class="col-12">
+                <form method="POST">
+                    <div class="form-group">
+                        <input type="hidden" name="question_id" value="{{question_id}}">
+                        <input type="hidden" name="score" value="{{score}}">
+                        <input type="text" class="text-box" id="answer" name="answer" placeholder="Answer" autofocus></input>
+
+                    </div>
+
+                    <button class="btn btn-info button-style" type="button" data-toggle="collapse" data-target="#hint" aria-expanded="false" aria-controls="hint">Hint</button>
+                    <button class="btn btn-success button-style" name="button" value="submit">Submit</button>
+                    <button class="btn btn-danger button-style" name="button" value="skip">Skip Question<span class="fa fa-forward"></span></button>
+                </form>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row collapse" id="hint">
+            <div class="col-12">
+                <p class="hint-text text-center">{{ riddle_data[question_id]['hint'] }}</p>
+            </div>
+        </div>
+        <!-- flashed message if answer is incorrect -->
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+        <h4 class="flashed-answer"><span class="flashed-answer-span">{{ message }}</span> is incorrect! Try again!</h4>
+        {% endfor %} {% endif %} {% endwith %}
+
     </div>
 
+</header>
+
+<!-- Username Grid Section -->
+<section class="portfolio" id="play">
+    <div class="container-fluid">
+
+        <h2 class="text-center normal-text">Incorrect Answers</h2>
+        <hr>
+        <ul class="list-style normal-text text-center">
+            {% for guess in guesses %}
+            <ul class="guess-style">{{guess}}</ul>
+            <hr class="guess-hr"> {% endfor %}
+        </ul>
+    </div>
+
+</section>
 
 
-    <!-- jquery/js/popper for bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-
-</body>
-
-
-
-
-</html>
+{% endblock %}

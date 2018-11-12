@@ -5,3 +5,6 @@ Kaitie, 0
 Jase, -10
 Kay, 6
 Jessica, 8
+lee, -10
+lee, 5
+lee, -2

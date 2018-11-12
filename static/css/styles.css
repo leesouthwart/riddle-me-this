@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,700|Roboto+Mono:400,700');
 
+
+
+html {
+    overflow-x:hidden;
+}
+
 body {
     background-color: #bceef3 !important;
     font-family: 'Roboto Mono', monospace!important;
     
+
 }
 
 /* text styles */
@@ -11,24 +18,24 @@ body {
 .heading-text {
     margin-top: 25px;
     font-style: italic;
-    
+
 }
 
 .normal-text {
     font-style: normal;
     font-weight: normal;
-    
+
 }
 
 .italic-text {
     font-style: italic;
     font-weight: bold;
-    
+
 }
 
 .link-text {
     padding-bottom: 0;
-    
+
 }
 
 .link-text:hover {
@@ -39,15 +46,35 @@ body {
     margin-bottom: 0;
 }
 
+.flashed-message {
+    color: red;
+    font-style: italic;
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+.flashed-answer {
+    font-style: italic;
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.flashed-answer-span {
+    font-weight: 700;
+}
+
 
 
 /* jumbotron */
 
-.jumbotron {
+.table-center {
     width: 66%;
     margin: auto;
     padding-top: 25px;
-    background-color: #f5f5f5!important;
+    
 }
 
 .jumbotron-padding {
@@ -64,7 +91,7 @@ body {
 .riddle-text {
     font-size: 30px;
     font-weight: bold;
-    
+
 }
 
 .hint-text {
@@ -83,14 +110,14 @@ body {
 }
 
 @media (min-width: 576px) {
-    
+
     .text-box {
-        
+
         width: 208px;
     }
 }
 
-.form-group  {
+.form-group {
     padding-left: 6px;
 }
 
@@ -100,21 +127,30 @@ body {
     margin-top: 10px;
 }
 
+.submit-button {
+    color: #fff;
+    background-color: #18bc9c;
+}
+
+.submit-button:hover {
+    background-color: #3cceb1;
+}
+
 @media (min-width: 576px) {
     .button-style {
-        
+
         margin-left: 5px;
         border-radius: 0;
         margin-top: 0;
     }
 }
 
-.home-button-stlye{
+.home-button-stlye {
     background-color: #f5f5f5;
     color: #007bff;
 }
 
-.home-button-stlye:hover{
+.home-button-stlye:hover {
     background-color: #e8e6e6;
 }
 
@@ -126,16 +162,41 @@ body {
     margin-left: 5px;
 }
 
+/* nav form (differnt navs for index and maingame) */
 
+.nav-button {
+    background-color: transparent;
+    border: none;
+    font-weight: 700;
+}
 
+.nav-button:focus {
+    outline:none;
+}
 
+.nav-hs-button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem!important;
+    letter-spacing: 0.0625rem;
+    padding-left: 0px;
+}
 
+.nav-hs-button:hover {
+    color: #18bc9c;
+    outline:none;
+}
 
-    
-    
+.nav-form {
+    margin-bottom: 0;
+}
 
+button {
+    cursor: pointer;
 
-
+}
 
 
 /* incorrect answers */
@@ -148,15 +209,20 @@ body {
 
 .guess-hr {
     width: 50%;
-}    
-    
+}
+
 .list-style {
     padding-left: 0;
 }
 
-/* basic footer styles */
+/* footer styles */
 
-.footer {
-    margin-bottom: 10px;
-    font-style: italic;
+/* fixing footer to bottom of viewport */
+.copyright {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+
 }
